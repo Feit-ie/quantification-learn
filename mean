@@ -1,0 +1,21 @@
+import pandas as pd
+
+# 1. 提示用户输入数字，以英文逗号分隔
+user_input = input("请输入一组数字（用英文逗号 , 分隔）：\n例如：10, 20, 30, 40\n")
+
+# 2. 将输入的字符串转换为数字列表
+try:
+    number_list = [float(x.strip()) for x in user_input.split(',')]
+except ValueError:
+    print("输入中包含非数字内容，请重新运行程序并确保输入的都是数字！")
+    exit()
+
+# 3. 使用 pandas 创建 DataFrame
+df = pd.DataFrame(number_list, columns=['数值'])
+
+# 4. 计算均值
+mean_value = df['数值'].mean()
+
+# 5. 输出结果
+print(f"\n你输入的数字为：\n{df}")
+print(f"\n这些数的均值是：{mean_value:.2f}")
